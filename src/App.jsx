@@ -1,30 +1,27 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import ProductList from "./components/ProductList";
-import CartItem from "./components/CartItem";
-import AboutUs from "./components/AboutUs";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 
-function Home() {
-  return (
-    <div className="home">
-      <h1>Paradise Nursery</h1>
-      <Link to="/plants">
-        <button>Comenzar</button>
-      </Link>
-    </div>
-  );
-}
-
 function App() {
+  const navigate = useNavigate();
+
+  const handleStart = () => {
+    navigate("/products");
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/plants" element={<ProductList />} />
-        <Route path="/cart" element={<CartItem />} />
-        <Route path="/about" element={<AboutUs />} />
-      </Routes>
-    </Router>
+    <div className="app-container">
+      <h1>Welcome to Paradise Nursery</h1>
+
+      <p>
+        Descubre nuestra colección exclusiva de plantas y transforma tu hogar
+        en un espacio lleno de vida y naturaleza.
+      </p>
+
+      <button onClick={handleStart}>
+        Comenzar
+      </button>
+    </div>
   );
 }
 
