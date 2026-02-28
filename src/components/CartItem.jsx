@@ -1,3 +1,4 @@
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateQuantity, removeItem } from "../redux/CartSlice";
 import { Link } from "react-router-dom";
@@ -6,16 +7,48 @@ function CartItem() {
   const items = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
-  const totalGeneral = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  /* ===============================
+     FUNCIONES DE CÁLCULO
+  =============================== */
+
+  // Total por producto
+  const calculateTotalCost = (item) => {
+    return item.price * item.quantity;
+  };
+
+  // Total general del carrito
+  const calculateTotalAmount = () => {
+    return items.reduce(
+      (total, item) => total + calculateTotalCost(item),
+      0
+    );
+  };
+
+  /* ===============================
+     FUNCIONES DE ACCIONES
+  =============================== */
+
+  const handleIncrement = (id) => {
+    dispatch(updateQuantity({ id, amount: 1 }));
+  };
+
+  const handleDecrement = (id) => {
+    dispatch(updateQuantity({ id, amount: -1 }));
+  };
+
+  const handleRemoveItem = (id) => {
+    dispatch(removeItem(id));
+  };
+
+  const handleCheckoutShopping = () => {
+    alert("Checkout functionality coming soon!");
+  };
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Carrito de Compras</h1>
+      <h1>Shopping Cart</h1>
 
-      {items.length === 0 && <p>El carrito está vacío.</p>}
+      {items.length === 0 && <p>Your cart is empty.</p>}
 
       {items.map(item => (
         <div
@@ -28,41 +61,47 @@ function CartItem() {
           }}
         >
           <h3>{item.name}</h3>
-          <p>Precio unitario: ${item.price}</p>
-          <p>Cantidad: {item.quantity}</p>
-          <p>Total producto: ${item.price * item.quantity}</p>
+          <p>Unit Price: ${item.price}</p>
+          <p>Quantity: {item.quantity}</p>
 
-          <button onClick={() => dispatch(updateQuantity({ id: item.id, amount: 1 }))}>
-            +
-          </button>
+          {/* Total por producto usando función */}
+          <p>Total Cost: ${calculateTotalCost(item)}</p>
+
+          <button onClick={() => handleIncrement(item.id)}>+</button>
 
           <button
-            onClick={() => dispatch(updateQuantity({ id: item.id, amount: -1 }))}
+            onClick={() => handleDecrement(item.id)}
             style={{ marginLeft: "10px" }}
           >
             -
           </button>
 
+          {/* Botón eliminar con clase */}
           <button
-            onClick={() => dispatch(removeItem(item.id))}
-            style={{ marginLeft: "10px", backgroundColor: "#d32f2f", color: "white" }}
+            className="remove-button"
+            onClick={() => handleRemoveItem(item.id)}
+            style={{
+              marginLeft: "10px",
+              backgroundColor: "#d32f2f",
+              color: "white"
+            }}
           >
-            Eliminar
+            Remove
           </button>
         </div>
       ))}
 
-      <h2>Total General: ${totalGeneral}</h2>
+      {/* Total general usando función */}
+      <h2>Total Amount: ${calculateTotalAmount()}</h2>
 
-      <button
-        onClick={() => alert("Función de pago próximamente")}
-        style={{ marginRight: "10px" }}
-      >
-        Pagar
+      <button onClick={handleCheckoutShopping}>
+        Checkout
       </button>
 
       <Link to="/plants">
-        <button>Continuar Comprando</button>
+        <button style={{ marginLeft: "10px" }}>
+          Continue Shopping
+        </button>
       </Link>
     </div>
   );
