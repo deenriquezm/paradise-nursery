@@ -1,16 +1,44 @@
-# React + Vite
+# 🌿 e-plantShopping
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+e-plantShopping es una aplicación web desarrollada con React y Redux que permite a los usuarios explorar y comprar plantas en línea.
 
-Currently, two official plugins are available:
+## 🚀 Descripción del Proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Esta aplicación simula una tienda de plantas donde los usuarios pueden:
 
-## React Compiler
+- Ver una lista de 6 plantas organizadas en 3 categorías
+- Agregar plantas al carrito de compras
+- Aumentar o disminuir la cantidad de cada producto
+- Eliminar productos del carrito
+- Ver el total por producto
+- Ver el total general del carrito
+- Navegar entre la página principal, productos y carrito
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+- React
+- Redux Toolkit
+- React Router
+- Vite
+- CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Funcionalidades Principales
+
+- Gestión de estado global con Redux
+- Actualización dinámica del carrito
+- Navegación entre páginas
+- Interfaz interactiva
+
+## ▶️ Cómo ejecutar el proyecto
+
+1. Clonar el repositorio
+2. Instalar dependencias:
+npm install
+3. Ejecutar el servidor de desarrollo:
+
+npm run dev
+4. Abrir en el navegador:
+http://localhost:5173
+---
+
+Desarrollado como parte del proyecto final de desarrollo con React.
